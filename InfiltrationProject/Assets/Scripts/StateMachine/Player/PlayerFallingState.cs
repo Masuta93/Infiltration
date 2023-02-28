@@ -20,7 +20,6 @@ public class PlayerFallingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        Move(momentum, deltaTime);
     }
 
     public override void PhysicsTick(float fixedDeltaTime)

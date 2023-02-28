@@ -12,6 +12,9 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Animator Animator { get; private set; }
 
     [field: SerializeField] public float RotationSpeed { get; private set; }
+    [field: SerializeField] public GameObject GroundChecker { get; private set; }
+    [field: SerializeField] public Vector3 BoxDimension { get; private set; }
+    [field: SerializeField] public LayerMask GroundMask { get; private set; }
     public Transform MainCameraTransform { get; private set; }
 
     public Rigidbody rb { get; private set; }

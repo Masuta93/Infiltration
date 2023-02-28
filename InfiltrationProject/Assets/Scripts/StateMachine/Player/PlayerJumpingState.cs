@@ -13,24 +13,24 @@ public class PlayerJumpingState : PlayerBaseState
 
     public override void Enter()
     {
-        momentum = stateMachine.rb.velocity;
-        momentum.y = 0; 
-
         stateMachine.Animator.CrossFadeInFixedTime(JumpHash, CrossFadeDuration);
+        stateMachine.rb.AddForce(Vector3.up * 250, ForceMode.Impulse);
+
+
     }
 
     public override void Tick(float deltaTime)
     {
-        Move(momentum, deltaTime);
 
-        if (stateMachine.rb.velocity.y <= 0)
+      /*  if (stateMachine.rb.velocity.y <= 0)
         {
             stateMachine.SwitchState(new PlayerFallingState(stateMachine));
             return;
-        }
+        }*/
     }
     public override void PhysicsTick(float fixedDeltaTime)
     {
+
     }
 
     public override void Exit()

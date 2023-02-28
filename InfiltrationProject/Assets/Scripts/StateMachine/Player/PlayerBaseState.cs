@@ -32,23 +32,6 @@ public abstract class PlayerBaseState : State
         }
     }
 
-    protected void Move(Vector3 momentum, float deltaTime)
-    {
-        Vector3 movement = CalculateMovement();
-        if (movement.magnitude > 0)
-        {
-            stateMachine.rb.velocity = momentum;
-            stateMachine.transform.rotation = Quaternion.LookRotation(movement);
-            stateMachine.Animator.SetFloat("FreeLookSpeed", 0.66f, 0.1f, deltaTime);
-        }
-        else
-        {
-            stateMachine.rb.velocity = new Vector3(0, stateMachine.rb.velocity.y, 0);
-            stateMachine.Animator.SetFloat("FreeLookSpeed", 0, 0.1f, deltaTime);
-        }
-    }
-
-
 
     private Vector3 CalculateMovement()
     {
@@ -70,5 +53,10 @@ public abstract class PlayerBaseState : State
     public void OnSprint()
     {
         stateMachine.SwitchState(new PlayerRunningState(stateMachine));
+    }
+
+    public void isGrounded()
+    {
+        Physics.OverlapBox(stateMachine.GroundChecker.transform.position, stateMachine.BoxDimension, Quaternion.identity, stateMachine.GroundMask);
     }
 }

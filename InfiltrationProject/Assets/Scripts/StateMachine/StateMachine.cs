@@ -25,6 +25,6 @@ public abstract class StateMachine : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireCube(new Vector3 (transform.position.x, transform.position.y-1, transform.position.z), new Vector3(.2f, .2f, .2f));
+        Gizmos.DrawWireCube(new Vector3 (transform.position.x, transform.position.y-0.7f, transform.position.z), new Vector3(.2f, 1.5f/2, .2f));
     }
 }

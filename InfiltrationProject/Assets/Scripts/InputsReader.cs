@@ -8,7 +8,6 @@ public class InputsReader : MonoBehaviour, Controls.IPlayerActions
 {
     public Vector2 MovementValue { get; private set; }
     public event Action SprintEvent;
-    public event Action StopSprintEvent;
     public event Action CrouchEvent;
     public event Action JumpEvent;
 

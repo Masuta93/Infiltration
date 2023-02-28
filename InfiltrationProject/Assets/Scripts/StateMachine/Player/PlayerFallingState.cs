@@ -6,20 +6,23 @@ public class PlayerFallingState : PlayerBaseState
 {
     private readonly int FallHash = Animator.StringToHash("Falling");
     private const float CrossFadeDuration = 0.1f;
-    private Vector3 momentum;
     public PlayerFallingState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
 
     public override void Enter()
     {
-        // momentum = stateMachine.rb.velocity;
-        // momentum.y = 0;
         stateMachine.Animator.CrossFadeInFixedTime(FallHash, CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
     {
+        isGrounded();
+        if(stateMachine.isGrounded == true)
+        {
+            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+        }
+        MoveJump(2);
     }
 
     public override void PhysicsTick(float fixedDeltaTime)

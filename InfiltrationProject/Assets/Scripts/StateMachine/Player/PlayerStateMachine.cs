@@ -10,16 +10,19 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float RunSpeed { get; private set; }
     [field: SerializeField] public float CrouchSpeed { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
-
+    [field: SerializeField] public float yPositionOffet{ get; private set; }
     [field: SerializeField] public float RotationSpeed { get; private set; }
     [field: SerializeField] public GameObject GroundChecker { get; private set; }
     [field: SerializeField] public Vector3 BoxDimension { get; private set; }
     [field: SerializeField] public LayerMask GroundMask { get; private set; }
+    [field: SerializeField] public FloorDetector FloorDetector { get; private set; }
+    [field: SerializeField] public bool isGrounded { get; set; }
     public Transform MainCameraTransform { get; private set; }
 
     public Rigidbody rb { get; private set; }
     private void Awake()
     {
+        yPositionOffet = 1f;
         rb= GetComponent<Rigidbody>();
     }
     void Start()

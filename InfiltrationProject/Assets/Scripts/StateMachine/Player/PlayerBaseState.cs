@@ -15,7 +15,26 @@ public abstract class PlayerBaseState : State
         Vector3 movement = CalculateMovement();
         if (movement.magnitude > 0)
         {
-            stateMachine.rb.velocity = new Vector3 (movement.normalized.x * speed, stateMachine.rb.velocity.y, movement.normalized.z * speed);
+            stateMachine.rb.velocity = new Vector3(movement.normalized.x * speed, stateMachine.rb.velocity.y, movement.normalized.z * speed);
+            Vector3 lookPos = stateMachine.MainCameraTransform.forward;
+            lookPos.y = 0;
+            Quaternion rotation = Quaternion.LookRotation(lookPos);
+            rotation = Quaternion.RotateTowards(stateMachine.rb.rotation, rotation, stateMachine.RotationSpeed);
+            stateMachine.rb.MoveRotation(rotation);
+            stateMachine.Animator.SetFloat("FreeLookSpeed", state, 0.1f, deltaTime);
+        }
+        else
+        {
+            stateMachine.rb.velocity = new Vector3(0, stateMachine.rb.velocity.y, 0);
+            stateMachine.Animator.SetFloat("FreeLookSpeed", 0, 0.1f, deltaTime);
+        }
+    }
+    protected void MoveJump(float speed)
+    {
+        Vector3 movement = CalculateMovement();
+        if (movement.magnitude > 0)
+        {
+            stateMachine.rb.velocity = new Vector3(movement.normalized.x * speed, stateMachine.rb.velocity.y, movement.normalized.z * speed);
 
             Vector3 lookPos = stateMachine.MainCameraTransform.forward;
             lookPos.y = 0;
@@ -23,16 +42,12 @@ public abstract class PlayerBaseState : State
             rotation = Quaternion.RotateTowards(stateMachine.rb.rotation, rotation, stateMachine.RotationSpeed);
             stateMachine.rb.MoveRotation(rotation);
 
-            stateMachine.Animator.SetFloat("FreeLookSpeed", state, 0.1f, deltaTime);
         }
         else
         {
-            stateMachine.rb.velocity = new Vector3 (0, stateMachine.rb.velocity.y,0);
-            stateMachine.Animator.SetFloat("FreeLookSpeed", 0, 0.1f, deltaTime);
+            stateMachine.rb.velocity = new Vector3(0, stateMachine.rb.velocity.y, 0);
         }
     }
-
-
     private Vector3 CalculateMovement()
     {
         Vector3 forward = stateMachine.MainCameraTransform.forward;
@@ -44,8 +59,6 @@ public abstract class PlayerBaseState : State
 
         return forward * stateMachine.InputsReader.MovementValue.y + right * stateMachine.InputsReader.MovementValue.x;
     }
-
-
     public void OnJump()
     {
         stateMachine.SwitchState(new PlayerJumpingState(stateMachine));
@@ -54,9 +67,22 @@ public abstract class PlayerBaseState : State
     {
         stateMachine.SwitchState(new PlayerRunningState(stateMachine));
     }
-
     public void isGrounded()
     {
-        Physics.OverlapBox(stateMachine.GroundChecker.transform.position, stateMachine.BoxDimension, Quaternion.identity, stateMachine.GroundMask);
+        Collider[] groundColliders = Physics.OverlapBox(stateMachine.GroundChecker.transform.position, stateMachine.BoxDimension, Quaternion.identity, stateMachine.GroundMask);
+
+        stateMachine.isGrounded = groundColliders.Length > 0;
+
+        if (groundColliders.Length > 0)
+        {
+        }
+    }
+
+    public void StickToGround()
+    {
+        Vector3 averagePosition = stateMachine.FloorDetector.AverageHeight();
+        Vector3 newPosition = new Vector3(stateMachine.rb.position.x, averagePosition.y + stateMachine.yPositionOffet, stateMachine.rb.position.z);
+        stateMachine.rb.MovePosition(newPosition);
+        stateMachine.rb.velocity = new Vector3(stateMachine.rb.velocity.x, 0, stateMachine.rb.velocity.z);
     }
 }

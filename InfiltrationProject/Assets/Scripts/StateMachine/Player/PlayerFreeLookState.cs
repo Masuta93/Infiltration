@@ -16,18 +16,20 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.Animator.CrossFadeInFixedTime(FreeHash, CrossFadeDuration);
         stateMachine.InputsReader.JumpEvent += OnJump;
         stateMachine.InputsReader.SprintEvent += OnSprint;
+        stateMachine.InputsReader.CrouchEvent += OnCrouch;
     }
     public override void Tick(float deltaTime)
     {
+
+    }
+    public override void PhysicsTick(float fixedDeltatime)
+    {
         stateMachine.FloorDetector.AverageHeight();
-        isGrounded();
         if (stateMachine.isGrounded == false)
         {
             stateMachine.SwitchState(new PlayerFallingState(stateMachine));
         }
-    }
-    public override void PhysicsTick(float fixedDeltatime)
-    {
+        Grounded();
         StickToGround();
         Move(stateMachine.WalkSpeed, fixedDeltatime, 0.5f);
     }
@@ -35,6 +37,7 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.InputsReader.JumpEvent -= OnJump;
         stateMachine.InputsReader.SprintEvent -= OnSprint;
+        stateMachine.InputsReader.CrouchEvent -= OnCrouch;
     }
 
 }

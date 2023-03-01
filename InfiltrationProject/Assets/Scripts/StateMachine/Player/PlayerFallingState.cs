@@ -17,7 +17,6 @@ public class PlayerFallingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        isGrounded();
         if(stateMachine.isGrounded == true)
         {
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
@@ -27,6 +26,7 @@ public class PlayerFallingState : PlayerBaseState
 
     public override void PhysicsTick(float fixedDeltaTime)
     {
+        Grounded();
     }
     public override void Exit()
     {

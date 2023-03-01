@@ -10,11 +10,12 @@ public class PlayerRunningState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.InputsReader.JumpEvent += OnJump;
+        stateMachine.InputsReader.CrouchEvent += OnCrouch;
     }
     public override void Tick(float deltaTime)
     {
         stateMachine.FloorDetector.AverageHeight();
-        isGrounded();
+        Grounded();
         if (stateMachine.isGrounded == false)
         {
             stateMachine.SwitchState(new PlayerFallingState(stateMachine));
@@ -28,5 +29,6 @@ public class PlayerRunningState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputsReader.JumpEvent -= OnJump;
+        stateMachine.InputsReader.CrouchEvent -= OnCrouch;
     }
 }

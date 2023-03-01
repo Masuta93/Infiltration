@@ -7904,8 +7904,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144655453}
-  m_LocalRotation: {x: 0.089350834, y: 0.000000017137559, z: -0.0000000015374045,
-    w: 0.99600023}
+  m_LocalRotation: {x: 0.08935086, y: -0.000000017137559, z: 0.0000000015374048, w: 0.99600023}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8141,6 +8140,16 @@ PrefabInstance:
       propertyPath: collider2
       value: 
       objectReference: {fileID: 918558676}
+    - target: {fileID: 1877787473100369981, guid: 3f706e1cd4ad91e44a6629031c534ade,
+        type: 3}
+      propertyPath: <RunSpeed>k__BackingField
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877787473100369981, guid: 3f706e1cd4ad91e44a6629031c534ade,
+        type: 3}
+      propertyPath: <WalkSpeed>k__BackingField
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1877787473100369981, guid: 3f706e1cd4ad91e44a6629031c534ade,
         type: 3}
       propertyPath: <CrouchSpeed>k__BackingField

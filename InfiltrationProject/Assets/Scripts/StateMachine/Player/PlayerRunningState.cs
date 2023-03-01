@@ -11,6 +11,7 @@ public class PlayerRunningState : PlayerBaseState
     {
         stateMachine.InputsReader.JumpEvent += OnJump;
         stateMachine.InputsReader.CrouchEvent += OnCrouch;
+        stateMachine.InputsReader.StopSprintEvent += OnStopSprint;
     }
     public override void Tick(float deltaTime)
     {
@@ -30,5 +31,6 @@ public class PlayerRunningState : PlayerBaseState
     {
         stateMachine.InputsReader.JumpEvent -= OnJump;
         stateMachine.InputsReader.CrouchEvent -= OnCrouch;
+        stateMachine.InputsReader.StopSprintEvent -= OnStopSprint;
     }
 }

@@ -21,7 +21,7 @@ public class PlayerFallingState : PlayerBaseState
         {
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
         }
-        MoveJump(2);
+        MoveJump(5);
     }
 
     public override void PhysicsTick(float fixedDeltaTime)

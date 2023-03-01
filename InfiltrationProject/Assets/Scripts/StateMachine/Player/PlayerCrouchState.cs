@@ -16,6 +16,7 @@ public class PlayerCrouchState : PlayerBaseState
         stateMachine.collider2.enabled = true;
         stateMachine.Animator.CrossFadeInFixedTime(CrouchHash, CrossFadeDuration);
         stateMachine.InputsReader.JumpEvent += OnJump;
+        stateMachine.InputsReader.StopCrouchEvent += OnStopCrouch;
     }
     public override void Tick(float deltaTime)
     {
@@ -37,5 +38,6 @@ public class PlayerCrouchState : PlayerBaseState
         stateMachine.collider1.enabled = true;
         stateMachine.collider2.enabled = false;
         stateMachine.InputsReader.JumpEvent -= OnJump;
+        stateMachine.InputsReader.StopCrouchEvent -= OnStopCrouch;
     }
 }

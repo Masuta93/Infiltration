@@ -71,6 +71,14 @@ public abstract class PlayerBaseState : State
     {
         stateMachine.SwitchState(new PlayerCrouchState(stateMachine));  
     }
+    public void OnStopCrouch()
+    {
+        stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+    }
+    public void OnStopSprint()
+    {
+        stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+    }
     public void Grounded()
     {
         Collider[] groundColliders = Physics.OverlapBox(stateMachine.GroundChecker.transform.position, stateMachine.BoxDimension, Quaternion.identity, stateMachine.GroundMask);

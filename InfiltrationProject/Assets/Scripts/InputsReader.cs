@@ -7,8 +7,10 @@ using UnityEngine.InputSystem;
 public class InputsReader : MonoBehaviour, Controls.IPlayerActions
 {
     public Vector2 MovementValue { get; private set; }
+    public event Action StopSprintEvent;
     public event Action SprintEvent;
     public event Action CrouchEvent;
+    public event Action StopCrouchEvent;
     public event Action JumpEvent;
 
     private Controls controls;
@@ -42,16 +44,25 @@ public class InputsReader : MonoBehaviour, Controls.IPlayerActions
 
     public void OnRun(InputAction.CallbackContext context)
     {
-        if (!context.performed) { return; }
-
-        SprintEvent?.Invoke();
+        if (context.performed)
+        {
+            SprintEvent?.Invoke();
+        }
+        else if (context.canceled)
+        {
+            StopSprintEvent?.Invoke();
+        }
     }
 
     public void OnCrouch(InputAction.CallbackContext context)
     {
-        if (!context.performed) { return; }
-
-
-        CrouchEvent?.Invoke();
+        if (context.performed)
+        {
+            CrouchEvent?.Invoke();
+        }
+        else if (context.canceled)
+        {
+            StopCrouchEvent?.Invoke();
+        }
     }
 }

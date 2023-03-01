@@ -17,11 +17,15 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public LayerMask GroundMask { get; private set; }
     [field: SerializeField] public FloorDetector FloorDetector { get; private set; }
     [field: SerializeField] public bool isGrounded { get; set; }
+
+    public Collider collider1;
+    public Collider collider2;
     public Transform MainCameraTransform { get; private set; }
 
     public Rigidbody rb { get; private set; }
     private void Awake()
     {
+        collider2.enabled = false;
         yPositionOffet = 1f;
         rb= GetComponent<Rigidbody>();
     }

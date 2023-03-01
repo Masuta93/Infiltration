@@ -67,6 +67,10 @@ public abstract class PlayerBaseState : State
     {
         stateMachine.SwitchState(new PlayerRunningState(stateMachine));
     }
+    public void OnCrouch()
+    {
+        stateMachine.SwitchState(new PlayerCrouchState(stateMachine));  
+    }
     public void Grounded()
     {
         Collider[] groundColliders = Physics.OverlapBox(stateMachine.GroundChecker.transform.position, stateMachine.BoxDimension, Quaternion.identity, stateMachine.GroundMask);
@@ -79,9 +83,5 @@ public abstract class PlayerBaseState : State
         Vector3 newPosition = new Vector3(stateMachine.rb.position.x, averagePosition.y + stateMachine.yPositionOffet, stateMachine.rb.position.z);
         stateMachine.rb.MovePosition(newPosition);
         stateMachine.rb.velocity = new Vector3(stateMachine.rb.velocity.x, 0, stateMachine.rb.velocity.z);
-    }
-    public void OnCrouch()
-    {
-        stateMachine.SwitchState(new PlayerCrouchState(stateMachine));  
     }
 }

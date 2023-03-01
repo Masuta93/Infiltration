@@ -12,6 +12,8 @@ public class PlayerCrouchState : PlayerBaseState
 
     public override void Enter()
     {
+        stateMachine.collider1.enabled = false;
+        stateMachine.collider2.enabled = true;
         stateMachine.Animator.CrossFadeInFixedTime(CrouchHash, CrossFadeDuration);
         stateMachine.InputsReader.JumpEvent += OnJump;
     }
@@ -32,6 +34,8 @@ public class PlayerCrouchState : PlayerBaseState
     }
     public override void Exit()
     {
+        stateMachine.collider1.enabled = true;
+        stateMachine.collider2.enabled = false;
         stateMachine.InputsReader.JumpEvent -= OnJump;
     }
 }

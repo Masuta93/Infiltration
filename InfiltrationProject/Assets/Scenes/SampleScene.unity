@@ -8163,7 +8163,7 @@ PrefabInstance:
     - target: {fileID: 1877787473100369981, guid: 3f706e1cd4ad91e44a6629031c534ade,
         type: 3}
       propertyPath: <BoxDimension>k__BackingField.y
-      value: 0.25
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1877787473100369981, guid: 3f706e1cd4ad91e44a6629031c534ade,
         type: 3}

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26303f1e5e7bcb440acac9b60288202e, type: 3}
+  m_Name: New Fist Object
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 0}
+  type: 2
+  description: 
+  equipmentType: 9
+  agilityBonus: 0
+  strengthBonus: 0
+  critBonus: 0
+  magicBonus: 0
+  attackSpeedBonus: 0
+  incantationSpeedBonus: 0
+  magicDefenseBonus: 0
+  armorBonus: 0
+  vitalityBonus: 0
+  manaBonus: 0
+  weaponType: 9
+  firstRangeDamageWeapon: 0
+  secondRangeDamageWeapon: 0
